@@ -1,0 +1,28 @@
+{
+  "name": "bidding_management_system",
+  "version": "1.0.0",
+  "description": "SEARCA Bidding Management System",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap-material-design": "^0.5.10",
+    "bootstrap": "^3.3.7",
+    "msal": "^0.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SEARCAPhil/bidding_management_system.git"
+  },
+  "keywords": [
+    "BMS"
+  ],
+  "author": "jkga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SEARCAPhil/bidding_management_system/issues"
+  },
+  "homepage": "https://github.com/SEARCAPhil/bidding_management_system#readme"
+}
