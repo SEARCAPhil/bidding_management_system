@@ -37,24 +37,189 @@
     * Create your own at http://cspisawesome.com
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+    <!--docker-->
+    <link rel="stylesheet" type="text/css" href="vendor/docker/css/docker.css">
+    <!--main stylesheet-->
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
+    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap-material-design/dist/js/material.min.js"></script>
+    <title>BMS</title>
 </head>
 
-<body>
-    <div class="app">
-        <h1>PhoneGap</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
+<body onload="init()">
+
+
+    <!--header-->
+    <header class="navbar navbar-default navbar-fixed-top navbar-black ui-header ui-bar-inherit" data-role="header" role="banner">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand docker-menu ui-link hidden-lg" href="javascript:void(0)" data-target=".docker">
+                <i class="material-icons header_menu">menu</i>
+            </a>
+
+            <a class="navbar-brand visible-lg">
+                <i class="material-icons header_menu">menu</i>
+            </a>
+
+          </div>
+          
         </div>
-    </div>
+    </header>
+
+    <!--/header-->
+
+
+
+    <!--docker menu-->
+         <section class="col col-lg-2 docker docker-sm-fixed docker-md-fixed docker-sm-hidden docker-xs-hidden docker-md-hidden hidden-md docker-lg-visible docker-lg-block" id="docker-sidebar" data-role="none" data-enhance="false" style="background:rgba(0,0,0,0.7);min-width:100px;">
+            <div class="content container-fluid" style="height: 1080px;background: none;">
+                <div class="col col-md-12">
+
+                    <ul class="list-unstyled main-menu main-menu-list">
+                        <li data-status="supplies" class="main-menu-list-item suppliers_main_menu" id="suppliers_main_menu">
+                            <i class="material-icons md-24" style="width: 24px;">local_mall</i> 
+                            <br/>Suppliers
+                        </li>
+
+                        <li data-status="invitations" class="main-menu-list-item deactivated">
+                            <i class="material-icons md-24" style="width: 24px;">insert_invitation</i> 
+                            <br/>Invitations 
+                        </li>
+
+                        <li data-status="open" class="main-menu-list-item deactivated">
+                            <i class="material-icons md-24" style="width: 24px;">drafts</i>
+                            <br/>Proposals 
+                        </li>
+
+                        <li data-status="closed" class="main-menu-list-item deactivated">
+                            <i class="material-icons md-24">account_circle</i>
+                            <br/>Account Settings 
+                        </li>
+                    </ul>
+
+
+                    <ul class="list-unstyled main-menu main-menu-list">
+                        <li id="new" class="deactivated">New <i class="material-icons">add</i></li>
+                    </ul>
+
+                </div>
+
+                <div class="col col-md-12">
+                    <ul class="list-unstyled main-menu">
+                        <li data-role="none"><a href="login.html" style="color:rgb(255,184,12);" data-ajax="false" onclick="signout();" class="ui-link">Sign-out <i class="material-icons" style="width: 24px;">keyboard_backspace</i> </a></li>
+                    </ul>
+                </div>
+
+            </div>   
+         </section>
+        <!--/docker-->
+
+
+
+        <article class="col col-lg-10 main-content">
+            <article class="row suppliers_menu_section"></article>
+            <article class="col col-lg-3 col-md-12 col-sm-12 hidden-xs hidden-md hidden-sm" id="item-docker-menu"></article>
+            <article class="col col-lg-6 col-sm-12 row show" id="main-page"></article>
+            <article class="col col-lg-3 col-md-12 col-sm-12 hidden visible-lg proposal-section" style="margin-top: 10vh;"></article>
+         </article>
+
+         <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+
+
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+    <script type="text/javascript" src="assets/js/suppliers/index.js"></script>
+    <script type="text/javascript" src="vendor/docker/js/docker.js"></script>
+    <script type="text/javascript" src="assets/js/suppliers/common.js"></script>
+
+    <!--suppliers list template-->
+    <script type="text/javascript" src="assets/js/suppliers/templates/Lists/Lists.js"></script>
+
+    <!--suppliers submenu-->
+    <script type="text/javascript" src="assets/js/suppliers/menu/submenu/submenu.js"></script>
+
+
+    <!--suppliers menu-->
+    <script type="text/javascript" src="assets/js/suppliers/menu/menu/menu.js"></script>
+
+
+
+    <!--product list template-->
+    <script type="text/javascript" src="assets/js/suppliers/templates/Products/Products.js"></script>
+
+    <!--index.js-->
+    <script type="text/javascript" src="assets/js/suppliers/index/index.js"></script>
+
+
+    <script type="text/javascript"> //show docker
+
+   
+
+
+    $(document).ready(function(){
+
+       //deviceReady();
+
+
+
+        /*$('.main-menu-list-item').on('click',function(){
+            $('.main-menu-list-item').removeClass('active');
+            $(this).addClass('active')
+
+            //supplies
+            if($(this).attr('data-status')=='supplies'){
+
+                //show menu
+                let submenuTemplate=window.bms.suppliers.menu.submenu;
+                submenuTemplate.hide()
+
+                showSuppliersWelcomePage()
+            }
+
+            //invitations
+            if($(this).attr('data-status')=='invitations'){
+
+                $('#item-docker-menu').html(' &nbsp;')
+                $('#main-page').load('pages/bidding/welcome.html',function(){
+
+                   $('.load-invitations-button').click(function(){
+
+                        $('#item-docker-menu').load('pages/bidding/invitations.html',function(){
+                            $('.invitation-list').off('click')
+                            $('.invitation-list').on('click',function(){
+                                 $('.invitation-list').removeClass('active')
+                                 $(this).addClass('active')
+                                $('#main-page').load('pages/bidding/proposals.html')     
+                            })
+                        });
+
+
+                   }) 
+
+                 
+
+
+                }) 
+                
+                //$('#main-page').load('pages/bidding/quotations.html');
+            }
+
+             
+        })*/
+        
+       
+      
+
+        
+    })
+    
+</script>
+
 </body>
 
 </html>
