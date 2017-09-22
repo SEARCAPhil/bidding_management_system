@@ -1,0 +1,17 @@
+dist: trusty
+sudo: required
+language: node_js
+node_js:
+  - "node"
+before_script:
+  - npm install gulp-cli browserify -g
+install:
+  - yarn install --flat
+  - gulp
+cache:
+  - yarn: true
+branches:
+  only:
+    - master
+    - develop
+
