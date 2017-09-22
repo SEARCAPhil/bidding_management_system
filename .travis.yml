@@ -15,5 +15,4 @@ branches:
     - master
     - develop
 notifications:
-
-webhooks: https://outlook.office.com/webhook/f2e23e55-b57d-48c0-9dfe-2fa37bc0410d@307a54f4-8cde-4681-93af-be6cebf30c26/TravisCI/3c954662f154445498f9e89764890a03/789c31c2-6879-4c34-b444-4a6bfad6490e
+  webhooks: https://outlook.office.com/webhook/f2e23e55-b57d-48c0-9dfe-2fa37bc0410d@307a54f4-8cde-4681-93af-be6cebf30c26/TravisCI/3c954662f154445498f9e89764890a03/789c31c2-6879-4c34-b444-4a6bfad6490e
