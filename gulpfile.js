@@ -9,6 +9,27 @@ const glob=require('glob')
 
 gulp.task('bundling suppliers templates',()=>{
 
+	glob('www/assets/js_es6/pages/**/*.js',function(err,file){
+		if(err) done(err)
+
+		var file=file.map((entry)=>{
+			return browserify({
+		        entries: [entry],
+		    })
+			.transform(babelify.configure({
+		        presets : ["es2015"]
+		    }))
+		    .bundle()
+		    .pipe(source(entry))
+			.pipe(gulp.dest('dist/'))
+		})
+
+	})
+	
+})
+
+gulp.task('bundling index',()=>{
+
 	glob('www/assets/js_es6/suppliers/**/*.js',function(err,file){
 		if(err) done(err)
 
@@ -28,4 +49,4 @@ gulp.task('bundling suppliers templates',()=>{
 	
 })
 
-gulp.task('default',['bundling suppliers templates']);
+gulp.task('default',['bundling suppliers templates','bundling index']);
