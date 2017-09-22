@@ -1,6 +1,9 @@
 # OS X
 .DS_Store
+.idea/
 plugins/
 platforms/
 hooks/
+node_modules/
+dist/
 
