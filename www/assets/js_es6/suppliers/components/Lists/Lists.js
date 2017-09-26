@@ -3,15 +3,14 @@ import Lists from '../../templates/Lists/Lists'
 import Supplier from '../Profile/Profile'
 import Navbar  from '../Navbar/Navbar'
 
-export default class {
+export default class{
 	constructor(){
 		this.nav=new Navbar();
 	}
 
 	loadPage(){
 		//navbar
-		this.nav.enable().active('.suppliers-list-tab')
-
+		this.nav.active('.suppliers-list-tab')
 		this._showSearchBox().then((pageClass)=>{
 			this.showSuppliersList().then(()=>{
 				//document.querySelector('#main-page').classList.remove('show');
@@ -20,7 +19,6 @@ export default class {
 		})
 
 		this._showListsMenu()
-
 	}
 
 
