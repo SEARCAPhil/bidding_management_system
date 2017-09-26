@@ -18,10 +18,27 @@ var Nav=new Navbar();
 
 window.init=function(){
 	console.log('Initializing . . .')
+	loadDefaultPage()
 }
 
+function loadDefaultPage(){
+	fetch('pages/welcome.html').then(response=>{return response.text()})
+	.then((data)=>{
+		var el=document.createElement('div')
+		el.setAttribute('class','col col-lg-6 col-lg-offset-3 row')
+		el.innerHTML=data
+		document.querySelector('.main-content').prepend(el)
+	})
+}
 
-function loadWelcomePage(){
+function loadWelcomePage(){ 	
+
+	//remove default page
+	try{
+		//prevent deletion of the .main-page section
+		if(!document.getElementById('main-page').parentNode.classList.contains('main-content'))	document.getElementById('main-page').parentNode.remove()
+	}catch(e){}
+
 	//load Navbar
 	Nav.load().then(()=>{
 		let ListsPage=new ListPage();
