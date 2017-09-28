@@ -2,6 +2,7 @@ import XHR  from '../../../mixins/XHR/XHR'
 import Lists from '../../templates/Lists/Lists'
 import Supplier from '../Profile/Profile'
 import Navbar  from '../Navbar/Navbar'
+import Spinner  from '../../../pages/Spinner/Spinner'
 
 export default class{
 	constructor(){
@@ -9,16 +10,19 @@ export default class{
 	}
 
 	loadPage(){
-		//navbar
-		this.nav.active('.suppliers-list-tab')
-		this._showSearchBox().then((pageClass)=>{
-			this.showSuppliersList().then(()=>{
-				//document.querySelector('#main-page').classList.remove('show');
-				//document.querySelector('#item-docker-menu').classList.add('show')
+		return new Promise((resolve,reject)=>{
+			//navbar
+			this.nav.active('.suppliers-list-tab')
+			this._showSearchBox().then((pageClass)=>{
+				this.showSuppliersList().then(()=>{
+					//document.querySelector('#main-page').classList.remove('show');
+					//document.querySelector('#item-docker-menu').classList.add('show')
+					resolve(this)
+				})
 			})
-		})
 
-		this._showListsMenu()
+			this._showListsMenu()
+		})
 	}
 
 
@@ -87,6 +91,16 @@ export default class{
 		this.classList.add('active')
 
 		let supplierPage=new Supplier()
-		supplierPage.loadPage();
+
+
+		//Create new spinner
+		var spinner=new Spinner({
+			target:'.main-content',
+			class:'spinner'
+		})
+
+		spinner.show()
+
+		supplierPage.loadPage().then(()=>spinner.hide())
 	}
 }
