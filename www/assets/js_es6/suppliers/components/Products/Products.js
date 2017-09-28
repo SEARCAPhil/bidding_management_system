@@ -1,5 +1,6 @@
 import XHR  from '../../../mixins/XHR/XHR'
 import Navbar  from '../Navbar/Navbar'
+import Spinner  from '../../../pages/Spinner/Spinner'
 
 export default class{
 	constructor(){
@@ -9,12 +10,20 @@ export default class{
 	}
 
 	loadPage(){
+
+		let spinner=new Spinner({
+			target:'.main-content',
+			class:'spinner'
+		})
+
+		spinner.show()
+
 		var xhr=new XHR();
 		return xhr.request({url:this.url}).then((res)=>{
 			//navbar
 			this.nav.enable().active('.products-tab')
-			
 			document.querySelector(this.target).innerHTML=res
+			spinner.hide()
 		}).catch((err)=>{ console.log(err) })
 	}
 
