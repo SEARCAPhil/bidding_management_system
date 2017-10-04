@@ -7,6 +7,7 @@ before_install:
   - npm install gulp-cli browserify -g
 install:
   - yarn install --flat
+  - yarn add readable-stream --flat
   - cd src && gulp
 cache:
   - yarn: true
