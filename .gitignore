@@ -6,3 +6,4 @@ platforms/
 hooks/
 node_modules/
 !src/node_modules/
+www/
