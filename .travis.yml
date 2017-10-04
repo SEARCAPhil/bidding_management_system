@@ -9,6 +9,7 @@ install:
   - yarn install --flat
   - yarn add readable-stream --flat
   - cd src && gulp
+  - cd ..
 cache:
   - yarn: true
 branches:
