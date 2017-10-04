@@ -12,6 +12,8 @@ class Index{
 		window.bms=window.bms||{}
 		window.bms.deviceInstance='mobile'
 
+		this._inAppBrowserOverride()
+
 		this.spinner=new Spinner({
 			target:'.main-content',
 			class:'spinner'
@@ -22,6 +24,16 @@ class Index{
 		sideBar.toggle()
 		
 		this.loadDefaultPage()
+	}
+
+	_inAppBrowserOverride(){
+		//override window.open in cordova
+		//require cordava-inapp-browser plugin
+		try{
+			window.open=cordova.InAppBrowser.open;
+		}catch(e){
+			console.log('Cordova InAppBrowser is required')
+		}
 	}
 
 
@@ -56,17 +68,30 @@ class Index{
 
 }
 
+
+
+//check login
+function loginInstance(){
+	var token=window.localStorage.getItem('token')||''
+	return token.length>0?true:false
+}
+
 //for mobile
 document.addEventListener('deviceready',function(){
 	var index=new Index();
 })
 
 //for web
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function(event) {	
+	if(!loginInstance()&&typeof window.cordova=='undefined'){
+		window.location=window.location.href.substr(0,window.location.href.lastIndexOf('/'))+'/pages/authentication/index.html'
+	}
 	if(typeof window.cordova=='undefined'){
 		return new Index();
 	}
 });
+
+
 
 
 

@@ -11,23 +11,26 @@ const glob=require('glob')
 const runSequence = require('run-sequence')
 const del = require('del')
 
-
+//remove directory
 gulp.task('clean',()=>{
 	return del('./test')
 })
 
 //copy all files to www except suppliers and pages
 gulp.task('copying files from src to www',()=>{
-	gulp.src(['./**/*.*','!./assets/js_es6/components/**/*.*','!./assets/js_es6/suppliers/**/*.*','!./assets/css/**/*.css','!./**/*.html'])
+	gulp.src(['./**/*.*','!./assets/js_es6/components/**/*.*','!./assets/js_es6/suppliers/**/*.*','!./assets/js_es6/authentication/**/*.*','!./assets/css/**/*.css','!./**/*.html'])
 	.pipe(gulp.dest('../www'))
 })
 
+
+//minify html
 gulp.task('minifying html',()=>{
 	gulp.src(['./**/*.html'])
-	.pipe(htmlmin({collapseWhitespace: true}))
+	.pipe(htmlmin({collapseWhitespace: true,minifyCSS: true,removeComments: true}))
 	.pipe(gulp.dest('../www'))
 })
 
+//minify css
 gulp.task('minifying css',()=>{
 	gulp.src(['./assets/css/**/*.css'])
 	.pipe(uglify_css())
@@ -55,6 +58,26 @@ gulp.task('bundling components',()=>{
 
 	})
 	
+})
+
+//suppliers/
+gulp.task('bundling authentication module',()=>{
+	glob('./assets/js_es6/authentication/**/*.js',function(err,file){
+		if(err) done(err)
+		var file=file.map((entry)=>{
+			return browserify({
+		        entries: [entry],
+		    })
+			.transform(babelify.configure({
+		        presets : ["es2015"]
+		    }))
+		    .bundle()
+		    .pipe(source(entry))
+		    .pipe(buffer())
+		    .pipe(uglify())
+			.pipe(gulp.dest('../www'))
+		})
+	})	
 })
 
 
@@ -85,9 +108,6 @@ gulp.task('watch',()=>{
 })
 
 gulp.task('default',(cb)=>{
-	//build
-	runSequence('copying files from src to www','bundling components','bundling suppliers module','minifying html','minifying css');
-
-	
+	runSequence('copying files from src to www','bundling components',['bundling authentication module','bundling suppliers module','minifying html','minifying css'])
 });
 

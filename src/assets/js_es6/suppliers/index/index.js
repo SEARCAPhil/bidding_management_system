@@ -22,9 +22,6 @@ let spinner=new Spinner({
 	class:'spinner'
 })
 
-
-
-
 function loadWelcomePage(){ 	
 
 	//remove default page
