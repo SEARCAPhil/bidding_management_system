@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<!--
+<!DOCTYPE html><!--
     Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
 
     Licensed to the Apache Software Foundation (ASF) under one
@@ -18,37 +17,14 @@
      KIND, either express or implied.  See the License for the
     specific language governing permissions and limitations
     under the License.
--->
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <!-- Good default declaration:
+--><html><head><meta charset="utf-8"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"><!-- This is a wide open CSP declaration. To lock this down for production, see below. --><meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *"><!-- Good default declaration:
     * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
     * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
     * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
         * Enable inline JS: add 'unsafe-inline' to default-src
         * Enable eval(): add 'unsafe-eval' to default-src
     * Create your own at http://cspisawesome.com
-    -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
-    <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
-
-
-    <script type="text/javascript" src="../../assets/js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../node_modules/bootstrap-material-design/dist/js/material.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/authentication/auth.js"></script>
-    <title>Login</title>
-    <style type="text/css">
-        body{
+    --><!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> --><link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css"><link rel="stylesheet" type="text/css" href="../../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css"><script type="text/javascript" src="../../assets/js/jquery-3.1.1.min.js"></script><script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script><script type="text/javascript" src="../../node_modules/bootstrap-material-design/dist/js/material.min.js"></script><script type="text/javascript" src="../../assets/js/authentication/auth.js"></script><title>Login</title><style type="text/css">body{
           background: rgb(255,255,255);
         }
         input:focus,input:active {
@@ -67,72 +43,4 @@
           display: none;
           transition: all 0.3s ease-in-out;
           opacity: 0.9;
-        }
-    </style>
-</head>
-
-<body onload="auth_init()">
-    
-    <div style="margin-top: 8vh;">
-        <form method="POST" data-ajax="false" onsubmit="return false;"> 
-            <div class="col col-xs-12 col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-
-                <div class="col col-md-12 text-center"><img src="../../assets/images/searca-new.png" width="50%"></div>
-
-
-                <div class="col col-md-12">
-                      <center>
-                        <h1 style="padding-right: 0px !important;"> Sign In </h1>
-                        <small><p href="#" class="text-muted">Bidding Management System</p></small>
-                      </center>
-                </div>
-
-
-                <div class="col col-md-12 auth-error" style="margin-top:50px;"></div>
-                  
-                  <div class="form-group col col-md-12 ">
-                        <input type="text" class="form-control text-center" id="username" placeholder="Username" name="username" data-role="none" autocomplete="off" required="">          
-                     </div>
-                     <div class="form-group col col-md-12">
-                  
-                        <input type="password" class="form-control  text-center" placeholder="Password" id="password" name="password" data-role="none" required="">
-                   
-                     </div>
-
-
-                    <!--submit-button-->
-                    <div class="form-group col col-md-12 ">
-                        <button class="btn btn-block btn-submit ui-btn ui-shadow ui-corner-all" id="loginButton">Login</button>
-                    </div>
-
-                    <!--submit-button-->
-                   <div class="form-group col col-md-12 ">
-                     <button class="btn btn-block btn-office365 btn-primary btn-submit" type="button">Login with office365</button>
-                   </div>
-
-
-                    <center style="margin-top: 20%;">
-                        <small class="col col-xs-10 col-xs-offset-1" style="font-size: xx-small;">
-                            <p><a href="#" class="text-muted ui-link">© 2017 Information Technology Services Unit</a></p>
-                        </small>
-                    </center>
-
-
-                <!--end submit button-->
-                <div style="clear: both;"></div>
-            </div>
-
-        </form>
-
-</div>
-
-
-    <script type="text/javascript" src="../../cordova.js"></script>
-    <script type="text/javascript" src="../../node_modules/msal/out/msal.js"></script>
-    <script type="text/javascript" src="../../assets/js/authentication/office365Auth.js"></script>
-<script type="text/javascript">window.localStorage.clear();</script>
-</body>
-
-</html>
-
-
+        }</style></head><body onload="auth_init()"><div style="margin-top: 8vh"><form method="POST" data-ajax="false" onsubmit="return false;"><div class="col col-xs-12 col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1"><div class="col col-md-12 text-center"><img src="../../assets/images/searca-new.png" width="50%"></div><div class="col col-md-12"><center><h1 style="padding-right: 0px !important">Sign In</h1><small><p href="#" class="text-muted">Bidding Management System</p></small></center></div><div class="col col-md-12 auth-error" style="margin-top:50px"></div><div class="form-group col col-md-12"><input type="text" class="form-control text-center" id="username" placeholder="Username" name="username" data-role="none" autocomplete="off" required=""></div><div class="form-group col col-md-12"><input type="password" class="form-control text-center" placeholder="Password" id="password" name="password" data-role="none" required=""></div><!--submit-button--><div class="form-group col col-md-12"><button class="btn btn-block btn-submit ui-btn ui-shadow ui-corner-all" id="loginButton">Login</button></div><!--submit-button--><div class="form-group col col-md-12"><button class="btn btn-block btn-office365 btn-primary btn-submit" type="button">Login with office365</button></div><center style="margin-top: 20%"><small class="col col-xs-10 col-xs-offset-1" style="font-size: xx-small"><p><a href="#" class="text-muted ui-link">© 2017 Information Technology Services Unit</a></p></small></center><!--end submit button--><div style="clear: both"></div></div></form></div><script type="text/javascript" src="../../cordova.js"></script><script type="text/javascript" src="../../node_modules/msal/out/msal.js"></script><script type="text/javascript" src="../../assets/js/authentication/office365Auth.js"></script><script type="text/javascript">window.localStorage.clear();</script></body></html>

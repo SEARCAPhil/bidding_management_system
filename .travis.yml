@@ -7,7 +7,7 @@ before_script:
   - npm install gulp-cli browserify -g
 install:
   - yarn install --flat
-  - gulp
+  - cd src && gulp
 cache:
   - yarn: true
 branches:
