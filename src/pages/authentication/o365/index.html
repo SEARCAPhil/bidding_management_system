@@ -39,7 +39,7 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" async="true">
 
     <script type="text/javascript" src="../../../assets/js/config.js"></script>
     <script type="text/javascript" src="../../../assets/js/jquery-3.1.1.min.js"></script>
@@ -78,20 +78,17 @@
 <body onload="auth_init()">
     
     <div style="margin-top: 8vh;">
+        <div class="col col-xs-12 col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+          <div class="col col-md-12 text-center"><img src="../../../assets/images/searca-new.png" width="40%"></div>
+          <div class="col col-md-12">
+                <center>
+                  <h1 style="padding-right: 0px !important;"> Sign In </h1>
+                  <small><p href="#" class="text-muted">Bidding Management System</p></small>
+                </center>
+          </div>
+        </div>
         <form method="POST" data-ajax="false" onsubmit="return false;"> 
             <div class="col col-xs-12 col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-
-                <div class="col col-md-12 text-center"><img src="../../../assets/images/searca-new.png" width="50%"></div>
-
-
-                <div class="col col-md-12">
-                      <center>
-                        <h1 style="padding-right: 0px !important;"> Sign In </h1>
-                        <small><p href="#" class="text-muted">Bidding Management System</p></small>
-                      </center>
-                </div>
-
-
                 <div class="col col-md-12 auth-error" style="margin-top:50px;"></div>
 
                    <div class="form-group col col-md-12 ">
@@ -113,7 +110,7 @@
 </div>
 
 
-    <script type="text/javascript" src="./../../cordova.js"></script>
+    <script type="text/javascript" src="./../../../cordova.js"></script>
     <script type="text/javascript" src="../../../node_modules/msal/out/msal.js"></script>
     <script type="text/javascript" src="../../../assets/js/authentication/office365Auth.js"></script>
 <script type="text/javascript">window.localStorage.clear();</script>
