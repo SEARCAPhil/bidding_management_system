@@ -104,7 +104,6 @@
     "gulp-minify": "^1.0.0",
     "gulp-run-sequence": "^0.3.2",
     "gulp-uglify": "^3.0.0",
-    "readable-stream": "^2.3.3",
     "vinyl-buffer": "^1.0.0"
   },
   "dependencies": {
@@ -113,6 +112,7 @@
     "del": "^3.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-concat": "^2.6.1",
+    "readable-stream": "^2.3.3",
     "vinyl-source-stream": "^1.1.0"
   }
 }
