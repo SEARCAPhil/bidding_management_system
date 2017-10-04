@@ -8,7 +8,7 @@ const browserify = require("browserify")
 const source=require('vinyl-source-stream')
 const buffer=require('vinyl-buffer')
 const glob=require('glob')
-const runSequence = require('gulp-run-sequence')
+const runSequence = require('run-sequence')
 const del = require('del')
 
 
