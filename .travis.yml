@@ -3,11 +3,13 @@ sudo: required
 language: node_js
 node_js:
   - "node"
-before_script:
+before_install:
   - npm install gulp-cli browserify -g
 install:
   - yarn install --flat
-  - gulp
+  - yarn add readable-stream --flat
+  - cd src && gulp
+  - cd ..
 cache:
   - yarn: true
 branches:

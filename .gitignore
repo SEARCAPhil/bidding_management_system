@@ -5,5 +5,5 @@ plugins/
 platforms/
 hooks/
 node_modules/
-dist/
-
+!src/node_modules/
+www/
