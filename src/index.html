@@ -41,22 +41,27 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
     <!--docker-->
-    <link rel="stylesheet" type="text/css" href="vendor/docker/css/docker.css">
+    <link rel="preload" type="text/css" href="vendor/docker/css/docker.css" onload="this.rel='stylesheet'" as="style">
     <!--main stylesheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
-    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
+    <link rel="preload" type="text/css" href="assets/css/components/spinner/spinner.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" type="text/css" href="../node_modules/popup-es/dist/src/css/popup-es.min.css" as="style" onload="this.rel='stylesheet'">
+    <!--<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="node_modules/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap-material-design/dist/js/material.min.js"></script>-->
+         <!--script that always executed-->
+    <script type="text/javascript" src="assets/js_es6/components/exports.js"></script>
     <title>BMS</title>
 </head>
 
 <body>
 
 
+
     <!--header-->
     <header class="navbar navbar-default navbar-fixed-top navbar-black ui-header ui-bar-inherit" data-role="header" role="banner">
         <div class="container-fluid">
-          <div class="navbar-header">
+          <nav class="navbar-header">
             <a class="navbar-brand docker-menu ui-link hidden-lg" href="javascript:void(0)" data-target=".docker">
                 <i class="material-icons header_menu">menu</i>
             </a>
@@ -65,7 +70,7 @@
                 <i class="material-icons header_menu">menu</i>
             </a>
 
-          </div>
+          </nav>
           
         </div>
     </header>
@@ -75,12 +80,12 @@
 
 
     <!--docker menu-->
-         <section class="col col-lg-2 col-md-3 col-xs-12 docker docker-sm-fixed docker-md-fixed docker-sm-hidden docker-xs-hidden docker-md-hidden hidden-md docker-lg-visible docker-lg-block" id="docker-sidebar" data-role="none" data-enhance="false" style="background:rgba(0,0,0,0.7);min-width:100px;">
+         <aside class="col col-lg-2 col-md-3 col-xs-12 docker docker-sm-fixed docker-md-fixed docker-sm-hidden docker-xs-hidden docker-md-hidden hidden-md docker-lg-visible docker-lg-fixed docker-lg-block" id="docker-sidebar" data-role="none" data-enhance="false" style="background:rgba(0,0,0,0.7);min-width:100px;">
             <div class="content container-fluid" style="height: 1080px;background: none;">
-                <div class="col col-md-12">
+                <menu class="col col-md-12">
 
                     <ul class="list-unstyled main-menu main-menu-list">
-                        <li data-status="supplies" class="main-menu-list-item suppliers_main_menu" id="suppliers_main_menu" data-menu="main-menu-list-item">
+                        <li data-status="supplies" class="main-menu-list-item suppliers_main_menu" id="suppliers_main_menu" data-menu="main-menu-list-item" onclick="window.location.hash='#/suppliers/'">
                             <i class="material-icons md-24" style="width: 24px;">local_mall</i> 
                             <br/>Suppliers
                         </li>
@@ -106,25 +111,27 @@
                         <li id="new" class="deactivated">New <i class="material-icons">add</i></li>
                     </ul>
 
-                </div>
+                </menu>
 
-                <div class="col col-md-12">
+                <menu class="col col-md-12">
                     <ul class="list-unstyled main-menu">
                         <li data-role="none"><a href="pages/authentication/" style="color:rgb(255,184,12);" data-ajax="false" onclick="signout();" class="ui-link">Sign-out <i class="material-icons" style="width: 24px;">keyboard_backspace</i> </a></li>
                     </ul>
-                </div>
+                </menu>
 
             </div>   
-         </section>
+         </aside>
         <!--/docker-->
 
 
 
-        <article class="col col-lg-10 main-content">
-            <article class="row suppliers_menu_section"></article>
-            <article class="col col-lg-3 col-md-12 col-sm-12 hidden-xs hidden-md hidden-sm" id="item-docker-menu"></article>
-            <article class="col col-lg-6 col-sm-12 col-xs-12" id="main-page"></article>
-            <article class="col col-lg-3 col-md-12 col-sm-12 hidden visible-lg proposal-section" style="margin-top: 10vh;"></article>
+        <article class="col col-lg-10 col-lg-offset-2 main-content">
+            <section class="row">
+                <article class="col col-lg-3 col-md-12 col-sm-12 hidden-xs hidden-md hidden-sm" id="item-docker-menu"></article>
+               <article class="suppliers_menu_section"></article>
+                <article class="col col-lg-9 col-sm-12 col-xs-12" id="main-page"></article>
+                <article class="col col-lg-3 col-md-12 col-sm-12 hidden visible-lg proposal-section" style="margin-top: 10vh;"></article>
+            </section>
          </article>
 
          <!-- Modal -->
@@ -132,12 +139,19 @@
 
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="assets/js_es6/components/Index/Index.js"></script>
+   
     <!--<script type="text/javascript" src="assets/js/suppliers/index.js"></script>-->
-    <script type="text/javascript" src="assets/js_es6/suppliers/index/index.js"></script>
+    <!--<script type="text/javascript" src="assets/js_es6/suppliers/index/index.js"></script>-->
 
-    
-
+   
 </body>
 
-</html>
+</html> 
+<script type="text/javascript" src="assets/js_es6/routers/Index/Index.js" defer></script>
+<script type="text/javascript" src="assets/js_es6/routers/Suppliers/Index.js" ></script>
+<script type="text/javascript" src="assets/js_es6/routers/Suppliers/Profile/Index.js"></script>
+<script type="text/javascript" src="assets/js_es6/routers/Suppliers/Products/Index.js"></script>
+<script type="text/javascript" src="assets/js_es6/routers/Suppliers/Accounts/Index.js"></script>
+<script type="text/javascript" src="assets/js_es6/routers/Suppliers/Logs/Index.js"></script>
+
+<script type="text/javascript" src="assets/js_es6/routers/Suppliers/Forms/Registration/Index.js"></script>

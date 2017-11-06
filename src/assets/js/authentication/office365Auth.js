@@ -168,7 +168,7 @@
 
                  //go to main page
                  setTimeout(function(){
-                    window.location='../../../index.html';
+                    window.location='../../../';
                  },700)
               }
 

@@ -8,6 +8,7 @@ export default class{
 	toggle(){
 		this.element.forEach((val,index)=>{
 			let __toggleCallback=this._toggleDocker.bind(this)
+			val.removeEventListener('click',__toggleCallback)
 			val.addEventListener('click',__toggleCallback)
 		})
 		

@@ -1,6 +1,8 @@
 const gulp=require('gulp')
 const uglify=require('gulp-uglify')
 const uglify_css=require('gulp-clean-css')
+const uglifyes=require('gulp-uglifyes')
+const rename=require('gulp-rename')
 const htmlmin=require('gulp-htmlmin')
 const concat=require('gulp-concat')
 const babelify = require('babelify')
@@ -18,7 +20,7 @@ gulp.task('clean',()=>{
 
 //copy all files to www except suppliers and pages
 gulp.task('copying files from src to www',()=>{
-	gulp.src(['./**/*.*','!./assets/js_es6/components/**/*.*','!./assets/js_es6/suppliers/**/*.*','!./assets/js_es6/authentication/**/*.*','!./assets/css/**/*.css','!./**/*.html'])
+	gulp.src(['./**/*.*','!./assets/js_es6/components/**/*.*','!./assets/js_es6/suppliers/**/*.*','!./assets/js_es6/authentication/**/*.*','!./assets/js_es6/routers/**/*.*','!./assets/css/**/*.css','!./**/*.html'])
 	.pipe(gulp.dest('../www'))
 })
 
@@ -47,7 +49,7 @@ gulp.task('bundling components',()=>{
 		        entries: [entry],
 		    })
 			.transform(babelify.configure({
-		        presets : ["es2015"]
+		        presets : ["env"]
 		    }))
 		    .bundle()
 		    .pipe(source(entry))
@@ -60,6 +62,27 @@ gulp.task('bundling components',()=>{
 	
 })
 
+
+//routers/
+gulp.task('loading routers',()=>{
+	glob('./assets/js_es6/routers/**/*.js',function(err,file){
+		if(err) done(err)
+		var file=file.map((entry)=>{
+			return browserify({
+		        entries: [entry],
+		    })
+			.transform(babelify.configure({
+		        presets : ["env"]
+		    }))
+		    .bundle()
+		    .pipe(source(entry))
+		    .pipe(buffer())
+		    .pipe(uglify())
+			.pipe(gulp.dest('../www'))
+		})
+	})	
+})
+
 //suppliers/
 gulp.task('bundling authentication module',()=>{
 	glob('./assets/js_es6/authentication/**/*.js',function(err,file){
@@ -69,7 +92,7 @@ gulp.task('bundling authentication module',()=>{
 		        entries: [entry],
 		    })
 			.transform(babelify.configure({
-		        presets : ["es2015"]
+		        presets : ["env"]
 		    }))
 		    .bundle()
 		    .pipe(source(entry))
@@ -90,7 +113,7 @@ gulp.task('bundling suppliers module',()=>{
 		        entries: [entry],
 		    })
 			.transform(babelify.configure({
-		        presets : ["es2015"]
+		        presets : ["env"]
 		    }))
 		    .bundle()
 		    .pipe(source(entry))
@@ -101,6 +124,7 @@ gulp.task('bundling suppliers module',()=>{
 	})	
 })
 
+
 gulp.task('watch',()=>{
 	gulp.watch('./assets/js_es6/**/*.js',()=>{
 		runSequence('bundling components','bundling suppliers module');
@@ -108,6 +132,6 @@ gulp.task('watch',()=>{
 })
 
 gulp.task('default',(cb)=>{
-	runSequence('copying files from src to www','bundling components',['bundling authentication module','bundling suppliers module','minifying html','minifying css'])
+	runSequence('copying files from src to www','bundling components',['bundling authentication module','bundling suppliers module','loading routers','minifying html','minifying css'])
 });
 

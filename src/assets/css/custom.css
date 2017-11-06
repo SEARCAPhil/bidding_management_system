@@ -99,6 +99,7 @@ input:focus,input:active,textarea:focus,textarea:active {
 #item-docker-menu{
 	background: #eee;
 	height: 100%;
+	z-index: 1;
 }
 
 /*main menu*/
@@ -122,7 +123,10 @@ input:focus,input:active,textarea:focus,textarea:active {
 }
 
 #item-docker-menu > .item-docker-menu-content{
-	/*background: #fff;*/
+	background: #fff;
+	min-height: 940px;
+	padding-top: 60px;
+	box-shadow: 0px 0px 5px rgba(200,200,200,0.7);
 }
 
 
@@ -139,19 +143,17 @@ input:focus,input:active,textarea:focus,textarea:active {
 
 /*list*/
 .list-container{
-	max-height: 910px;
-	overflow-x: auto;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .list{
 	padding-top:2px;
-	border-radius: 2px;
 	background: rgb(255,255,255);
 	margin-bottom: 5px;
 	cursor: pointer;
 	height: auto;
 	overflow: auto;
-	box-shadow: 0px 0px 5px rgba(200,200,200,0.7);
+	border-top: 1px solid rgba(220,220,220,0.6);
+	/*box-shadow: 1px 0px 1px rgba(200,200,200,0.3);*/
 }
 
 .established_date{
@@ -184,111 +186,7 @@ input:focus,input:active,textarea:focus,textarea:active {
 }
 
 
-/*quote*/
-.quotations-section{
-	margin-top: 10vh;
-	background: rgb(255,255,255);
-	border-radius: 5px;
-	padding:30px 30px;
-}
-.attachments{
-	float: left;
-	min-width: 150px;
-	height: 30px;
-	background: rgba(220,220,220,0.7);
-	border-radius: 50px;
-	padding: 0 20px 0 20px;
-	margin-right: 10px;
-}
 
-/*header supplier*/
-.header-section{
-	float: left;
-	background: #009688;
-	color: rgb(240,240,240);
-	margin-top: 30px;
-	padding: 10px;
-}
-.suppliers_top_menu{margin-top: 20px;}
-
-.suppliers_top_menu li{
-	float: left;
-	padding: 0px 4px 20px 4px;
-	text-align: center;
-	
-}
-
-.suppliers_top_menu li.active{
-	border-bottom: 3px solid rgb(255,184,12);
-}
-
-.suppliers_top_menu li a{
-	color: rgb(140,140,140);
-
-}
-
-
-.suppliers_menu{
-	height: 60px;
-	margin-top: 50px;
-	margin-bottom: 20px;
-	background: #fefefe;
-	box-shadow: 0px 0px 5px rgba(200,200,200,0.7);
-	cursor: default;
-	
-}
-
-.suppliers_menu  .suppliers_top_menu li a{
-	opacity: 0.3;
-	cursor: none;
-	
-}
-.suppliers_menu .suppliers_top_menu[data-active="true"] li a{
-	opacity: 1;
-	cursor: pointer;
-}
-
-.suppliers_top_menu li a:hover,.suppliers_top_menu li a:focus{
-	text-decoration: none;
-	
-}
-
-/*expanded in small devices*/
-.suppliers_top_menu_expand li a{
-	text-align: left;
-}
-
-.suppliers_top_menu_expand li.active{
-	border-bottom: none;
-	background: none;
-}
-
-.suppliers_top_menu_expand li.active a{
-	background: #efefef;
-	color: #009688;
-	
-}
-
-.suppliers_top_menu_expand li a:hover,.suppliers_top_menu_expand li.active a:hover{
-	background: none;
-	color: rgb(40,40,40);
-}
-
-
-
-
-.suppliers_menu.block{
-	visibility: visible;
-	opacity: 1;
-	margin-top: 50px;
-	cursor: default;
-}
-
-.suppliers_menu.block  .suppliers_top_menu li a{
-	opacity: 1;
-	cursor: pointer;
-	user-select:default;
-}
 
 /*suppliers add new button*/
 .suppliers_new_button{
@@ -305,33 +203,40 @@ input:focus,input:active,textarea:focus,textarea:active {
 }
 
 
-/*spinner*/
-/*https://codepen.io/ruigewaard/pen/CtnsJ*/
-.spinner{
-	margin-left:37%;
-	margin-top:200px;
-	position:fixed;
-	z-index:2046;
+/*menuList*/
+.menuList.active{
+	padding: 1px 4px 1px 4px;
+	margin-bottom: 5px;
+	border-radius: 10%;
+	background: rgba(200,200,200,0.7);
 }
-.block {
-  position: relative;
-  box-sizing: border-box;
-  float: left;
-  margin: 0 10px 10px 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  background:#419641;
+.menuList.active a{
+	color: rgb(255,255,255);
 }
 
-.block:nth-child(4n+1) { animation: wave 2s ease .0s infinite; }
-.block:nth-child(4n+2) { animation: wave 2s ease .2s infinite; }
-.block:nth-child(4n+3) { animation: wave 2s ease .4s infinite; }
-.block:nth-child(4n+4) { animation: wave 2s ease .6s infinite; margin-right: 0; }
-
-@keyframes wave {
-  0%   { top: 0;     opacity: 1; }
-  50%  { top: 30px;  opacity: .2; }
-  100% { top: 0;     opacity: 1; }
+/**/
+.submenu li {
+	padding: 8px;
 }
 
+.submenu li.active {
+	border-bottom: 2px solid #ffb80c;
+}
+
+.profile-section{
+	margin-top: 80px;
+	background: #fff;
+	padding: 10px;
+	border-radius: 2px;
+}
+
+.product-category-section{
+	padding: 10px;
+}
+
+.product-category-section:even{
+	background: #fcfcfc;
+}
+.product-category-section:last-child{
+	margin-bottom: 50px;
+}

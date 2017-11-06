@@ -136,6 +136,11 @@
 				display: block;
 		
 			}
+
+			.docker-lg-fixed{
+				position: fixed;
+		
+			}
 	    }
 
 

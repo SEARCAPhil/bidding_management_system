@@ -28,7 +28,9 @@ export default class Menu{
 					val.setAttribute('data-menu',this.props.menu)
 					val.setAttribute('data-active-class',this.props.activeClass)
 					val.setAttribute('data-callback',callbackReference)
+					val.removeEventListener('click',this._setActive)
 					val.addEventListener('click',this._setActive)
+					//val.addEventListener('click',props[prop].callback)
 					resolve(menuItems)
 				})
 			}

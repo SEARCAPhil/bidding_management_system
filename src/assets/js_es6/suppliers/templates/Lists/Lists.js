@@ -7,22 +7,22 @@ export default class Lists{
 		this.element=document.createElement('div');
 
 		//set HTML content
-		this.element_content=document.createElement('div');
+		//this.element_content=document.createElement('div');
 		
 		//shorten description
 		this.properties.description=this.properties.description.length>200?this.properties.description.substr(0,200)+'. . .':this.properties.description;
 
 		//set attribute
-		this.element_content.setAttribute('class',`${this.properties.class}`+` ${this.properties.status}`)
-		this.element_content.setAttribute('data-list',`${this.properties.id}`)
-		this.element_content.innerHTML=`
-			<h4>${this.properties.name}</h4>
+		this.element.setAttribute('class',`${this.properties.class}`+` ${this.properties.status}`)
+		this.element.setAttribute('data-list',`${this.properties.id}`)
+		this.element.innerHTML=`
+			<h5>${this.properties.name}</h5>
             <small class="established_date" onload="${this.properties.established||'element.remove();'}">
-            	<p><i class="material-icons md-18">date_range</i>${this.properties.established||'Estabished date is unspecified'}</p>
+            	<p><i class="material-icons md-18">date_range</i>${this.properties.established||'N/A'}</p>
             </small>
             <p class="text-muted">${this.properties.description}</p>`
 
-        this.element.appendChild(this.element_content)
+        //this.element.appendChild(this.element_content)
 
         return this;
 	}
@@ -34,7 +34,7 @@ export default class Lists{
 		window.bms.callback=window.bms.callback||{}
 
 		for(let event in this.properties.events){
-			this.element.children[0].addEventListener(event,this.properties.events[event])
+			this.element.addEventListener(event,this.properties.events[event])
 		}
 		
 	}
